@@ -1,0 +1,138 @@
+/*
+Theme Name: SC Bonn Beuel
+Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
+Template: twentytwentyfive
+Version: 0.1.3
+Requires at least: 6.7
+Text Domain: scbb
+*/
+
+/* ---------- Kopfbereich ---------- */
+.scbb-header {
+	background: #000;
+	color: #fff;
+}
+
+.scbb-header__top {
+	position: relative;
+	min-height: 170px;
+	padding: 18px max(24px, calc((100vw - 1240px) / 2)) 18px max(24px, calc((100vw - 1240px) / 2));
+	gap: 28px;
+	background: #000 url("assets/header-board.svg") no-repeat right center / auto 100%;
+}
+
+.scbb-header__logo {
+	position: relative;
+	z-index: 2;
+	display: block;
+	flex: 0 0 auto;
+}
+
+.scbb-header__logo img {
+	display: block;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 0 0 4px #000, 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.scbb-header__titles {
+	gap: 4px !important;
+}
+
+.scbb-header .scbb-header__title,
+.scbb-header .scbb-header__title a {
+	margin: 0;
+	color: #fff;
+	font-size: clamp(1.6rem, 3vw, 2.4rem);
+	font-weight: 600;
+	line-height: 1.15;
+	text-decoration: none;
+}
+
+.scbb-header .scbb-header__tagline {
+	margin: 0;
+	color: #c9d6f2;
+	font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+/* ---------- Menüleiste ---------- */
+.scbb-header__nav {
+	background: var(--wp--preset--color--scbb-blau);
+	/* Erster Menüpunkt bündig mit dem Logo (Innenabstand der Links ausgleichen) */
+	padding: 0 max(24px, calc((100vw - 1240px) / 2)) 0 calc(max(24px, calc((100vw - 1240px) / 2)) - 16px);
+}
+
+.scbb-nav,
+.scbb-nav .wp-block-navigation__container {
+	gap: 0 !important;
+}
+
+.scbb-nav .wp-block-navigation-item__content {
+	display: block;
+	padding: 14px 16px;
+	color: #fff !important;
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.scbb-nav .wp-block-navigation-item__content:hover,
+.scbb-nav .wp-block-navigation-item__content:focus,
+.scbb-nav .current-menu-item > .wp-block-navigation-item__content {
+	background: var(--wp--preset--color--scbb-blau-dunkel);
+}
+
+.scbb-nav .wp-block-navigation__responsive-container-open {
+	color: #fff;
+	padding: 12px 0;
+}
+
+/* ---------- Schmale Bildschirme ---------- */
+@media (max-width: 781px) {
+	.scbb-header__top {
+		min-height: 110px;
+		gap: 16px;
+		background-image: none; /* Brett-Grafik würde den Slogan überdecken */
+	}
+
+	.scbb-header__logo img {
+		width: 84px;
+		height: 84px;
+	}
+
+	.scbb-header__nav {
+		padding-left: 24px;
+	}
+
+}
+
+/* Geöffnetes Handy-Menü: deckend blau, über allem */
+.scbb-nav .wp-block-navigation__responsive-container.is-menu-open {
+	z-index: 100000;
+	padding: 20px 24px;
+	background: var(--wp--preset--color--scbb-blau) !important;
+	color: #fff !important;
+	opacity: 1;
+}
+
+.scbb-nav .is-menu-open .wp-block-navigation__responsive-container-close {
+	color: #fff;
+}
+
+.scbb-nav .is-menu-open .wp-block-navigation__container {
+	gap: 4px !important;
+	padding-top: 32px;
+}
+
+.scbb-nav .is-menu-open .wp-block-navigation-item__content {
+	padding: 10px 0;
+	font-size: 1.1rem;
+}
+
+.scbb-header__logo {
+	z-index: 1;
+}
