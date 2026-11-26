@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.3.0
+Version: 0.4.2
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -198,7 +198,7 @@ Text Domain: scbb
 	flex-wrap: wrap;
 	gap: 2px 16px;
 	padding: 8px 0;
-	border-bottom: 1px solid rgba(47, 98, 201, 0.2);
+	border-bottom: 1px solid rgba(65, 105, 225, 0.22);
 }
 
 .scbb-abend__liste dt {
@@ -317,4 +317,257 @@ Text Domain: scbb
 		grid-template-columns: 1fr;
 		padding-block: 36px;
 	}
+}
+
+/* ---------- Symbole ---------- */
+.scbb-icon {
+	display: inline-block;
+	flex: 0 0 auto;
+	vertical-align: -0.2em;
+}
+
+/* ---------- Menüleiste: Instagram + Spenden ---------- */
+.scbb-header__aktionen {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	gap: 14px;
+	padding: 6px 0;
+}
+
+.scbb-header__insta {
+	display: inline-flex;
+	color: #fff;
+	padding: 4px;
+	border-radius: 6px;
+}
+
+.scbb-header__insta:hover,
+.scbb-header__insta:focus {
+	background: var(--wp--preset--color--scbb-blau-dunkel);
+}
+
+.scbb-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	border-radius: 999px;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.scbb-button--spenden {
+	background: #fff;
+	color: var(--wp--preset--color--scbb-blau-dunkel) !important;
+}
+
+.scbb-button--spenden .scbb-icon {
+	color: var(--wp--preset--color--scbb-herz);
+}
+
+.scbb-button--spenden:hover,
+.scbb-button--spenden:focus {
+	background: var(--wp--preset--color--scbb-blau-hell);
+}
+
+@media (max-width: 420px) {
+	.scbb-button--spenden span {
+		display: none;
+	}
+
+	.scbb-button--spenden {
+		padding: 8px 10px;
+	}
+}
+
+/* ---------- Startseite: Kacheln Spenden / Instagram ---------- */
+.scbb-kacheln {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+	gap: 20px;
+	margin-block: 0 var(--wp--preset--spacing--50);
+}
+
+.scbb-kachel {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	padding: 20px 24px;
+	border-radius: 6px;
+	color: #fff;
+	text-decoration: none;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.scbb-kachel:hover,
+.scbb-kachel:focus {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.scbb-kachel--spenden {
+	background: var(--wp--preset--color--scbb-blau);
+}
+
+.scbb-kachel--insta {
+	background: #000;
+}
+
+.scbb-kachel__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.scbb-kachel--spenden .scbb-kachel__icon {
+	color: var(--wp--preset--color--scbb-herz);
+}
+
+.scbb-kachel--insta .scbb-kachel__icon {
+	color: #000;
+}
+
+.scbb-kachel__text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	line-height: 1.4;
+}
+
+.scbb-kachel__text strong {
+	font-size: 1.15rem;
+}
+
+.scbb-kachel__text span {
+	font-size: 0.95rem;
+	opacity: 0.9;
+}
+
+.scbb-kachel__pfeil {
+	margin-left: auto;
+	font-size: 1.5rem;
+}
+
+/* ---------- Fußbereich: Social ---------- */
+.scbb-footer__social a {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.scbb-footer__social .scbb-icon {
+	vertical-align: 0;
+}
+
+/* ---------- Inhaltsseiten: Karten, Hinweis, Pfeil-Links ---------- */
+.scbb-hinweis {
+	padding: 22px 26px !important;
+	background: var(--wp--preset--color--scbb-blau-hell);
+	border-left: 6px solid var(--wp--preset--color--scbb-blau);
+	border-radius: 4px;
+}
+
+.scbb-hinweis > * {
+	margin-block: 0 0.5em !important;
+}
+
+.scbb-hinweis > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.scbb-karten {
+	display: grid !important;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+	gap: 20px !important;
+}
+
+.scbb-karten > * {
+	margin: 0 !important;
+}
+
+.scbb-karte {
+	padding: 20px 22px !important;
+	border: 1px solid #dbe3f5;
+	border-top: 4px solid var(--wp--preset--color--scbb-blau);
+	border-radius: 4px;
+	background: #fff;
+}
+
+.scbb-karte > * {
+	margin-block: 0 0.5em !important;
+}
+
+.scbb-karte > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.scbb-karte h3 {
+	font-size: 1.15rem;
+}
+
+.scbb-pfeil a,
+a.scbb-pfeil {
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.scbb-pfeil a::after,
+a.scbb-pfeil::after {
+	content: " →";
+}
+
+.scbb-pfeil a:hover,
+a.scbb-pfeil:hover {
+	text-decoration: underline;
+}
+
+.scbb-zurueck a::before {
+	content: "← ";
+}
+
+/* Überschriften im Hinweiskasten nicht zu groß */
+.scbb-hinweis h2 {
+	font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+}
+
+/* Lange Adressen (E-Mail) in Karten umbrechen statt überlaufen */
+.scbb-karte {
+	overflow-wrap: anywhere;
+	min-width: 0;
+}
+
+/* Kontaktliste mit Symbolen (E-Mail, Instagram) */
+.scbb-kontaktliste {
+	list-style: none;
+	padding-left: 0;
+}
+.scbb-kontaktliste li {
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+	margin-block: 0.4em;
+	overflow-wrap: anywhere;
+}
+.scbb-kontaktliste li::before {
+	content: "";
+	flex: none;
+	width: 1.4em;
+	height: 1.4em;
+	background-color: var(--wp--preset--color--scbb-blau);
+	-webkit-mask: var(--scbb-symbol) center / contain no-repeat;
+	mask: var(--scbb-symbol) center / contain no-repeat;
+}
+.scbb-kontakt--mail {
+	--scbb-symbol: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='m3 7 9 6 9-6'/%3E%3C/svg%3E");
+}
+.scbb-kontakt--insta {
+	--scbb-symbol: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Crect x='3' y='3' width='18' height='18' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Ccircle cx='17.5' cy='6.5' r='1' fill='black' stroke='none'/%3E%3C/svg%3E");
 }

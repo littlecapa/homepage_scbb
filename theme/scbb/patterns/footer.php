@@ -58,6 +58,10 @@ $scbb_links_recht = array(
 		<div class="scbb-footer__spalte">
 			<h2 class="scbb-footer__titel">Kontakt</h2>
 			<p><a href="mailto:<?php echo esc_attr( $scbb_d['email'] ); ?>"><?php echo esc_html( $scbb_d['email'] ); ?></a></p>
+			<p class="scbb-footer__social">
+				<a href="<?php echo esc_url( $scbb_d['instagram'] ); ?>" target="_blank" rel="noopener"><?php echo scbb_icon_instagram( 18 ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php echo esc_html( $scbb_d['insta_name'] ); ?></a><br>
+				<a href="<?php echo esc_url( $scbb_d['spenden'] ); ?>" target="_blank" rel="noopener"><?php echo scbb_icon_herz( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?> Schachjugend unterstützen</a>
+			</p>
 			<ul>
 				<?php foreach ( $scbb_links_recht as $scbb_label => $scbb_pfad ) : ?>
 				<li><a href="<?php echo esc_url( home_url( $scbb_pfad ) ); ?>"><?php echo esc_html( $scbb_label ); ?></a></li>

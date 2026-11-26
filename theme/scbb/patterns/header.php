@@ -9,6 +9,7 @@
  */
 
 $scbb_logo = get_stylesheet_directory_uri() . '/assets/logo.png';
+$scbb_d    = scbb_daten();
 
 // Menüpunkte: Beschriftung => Pfad. Seiten, die es noch nicht gibt, führen vorerst ins Leere.
 $scbb_menu = array(
@@ -38,13 +39,20 @@ $scbb_menu = array(
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"scbb-header__nav","layout":{"type":"default"}} -->
+	<!-- wp:group {"className":"scbb-header__nav","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 	<div class="wp-block-group scbb-header__nav">
 		<!-- wp:navigation {"className":"scbb-nav","overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"left","flexWrap":"wrap"}} -->
 		<?php foreach ( $scbb_menu as $scbb_label => $scbb_path ) : ?>
 		<!-- wp:navigation-link <?php echo wp_json_encode( array( 'label' => $scbb_label, 'url' => home_url( $scbb_path ), 'kind' => 'custom', 'isTopLevelLink' => true ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?> /-->
 		<?php endforeach; ?>
 		<!-- /wp:navigation -->
+
+		<!-- wp:html -->
+		<div class="scbb-header__aktionen">
+			<a class="scbb-header__insta" href="<?php echo esc_url( $scbb_d['instagram'] ); ?>" target="_blank" rel="noopener" aria-label="Instagram: <?php echo esc_attr( $scbb_d['insta_name'] ); ?>" title="Instagram"><?php echo scbb_icon_instagram( 22 ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
+			<a class="scbb-button scbb-button--spenden" href="<?php echo esc_url( $scbb_d['spenden'] ); ?>" target="_blank" rel="noopener"><?php echo scbb_icon_herz( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span>Jugend unterstützen</span></a>
+		</div>
+		<!-- /wp:html -->
 	</div>
 	<!-- /wp:group -->
 </header>

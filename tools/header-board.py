@@ -25,8 +25,8 @@ out.append('<defs>'
   '<stop offset="0" stop-color="#000" stop-opacity="0.75"/>'
   '<stop offset="0.6" stop-color="#000" stop-opacity="0"/></linearGradient>'
   '<radialGradient id="glow" cx="0.72" cy="0.55" r="0.45">'
-  '<stop offset="0" stop-color="#3f73d9" stop-opacity="0.35"/>'
-  '<stop offset="1" stop-color="#3f73d9" stop-opacity="0"/></radialGradient>'
+  '<stop offset="0" stop-color="#4169e1" stop-opacity="0.35"/>'
+  '<stop offset="1" stop-color="#4169e1" stop-opacity="0"/></radialGradient>'
   '</defs>')
 out.append(f'<rect width="{W}" height="{H}" fill="#000"/>')
 out.append(f'<rect width="{W}" height="{H}" fill="url(#glow)"/>')
@@ -38,7 +38,7 @@ for r in range(8):
         fill = "#f2f4f8" if light else "#16213a"
         out.append('<polygon points="' + " ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + f'" fill="{fill}"/>')
 # blaue Brettkante vorne/hinten wie die Wellen im Logo
-out.append(f'<line x1="{back_l}" y1="{back_y}" x2="{back_r}" y2="{back_y}" stroke="#3f73d9" stroke-width="2"/>')
+out.append(f'<line x1="{back_l}" y1="{back_y}" x2="{back_r}" y2="{back_y}" stroke="#4169e1" stroke-width="2"/>')
 out.append(f'<rect width="{W}" height="{H}" fill="url(#depth)"/>')
 out.append(f'<rect width="{W}" height="{H}" fill="url(#fade)"/>')
 out.append('</svg>')

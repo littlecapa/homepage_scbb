@@ -4,11 +4,36 @@
 	"settings": {
 		"color": {
 			"palette": [
-				{ "slug": "scbb-schwarz", "name": "SCBB Schwarz", "color": "#000000" },
-				{ "slug": "scbb-weiss", "name": "SCBB Weiß", "color": "#ffffff" },
-				{ "slug": "scbb-blau", "name": "SCBB Blau (Logo-Wellen)", "color": "#2f62c9" },
-				{ "slug": "scbb-blau-dunkel", "name": "SCBB Blau dunkel", "color": "#1d468f" },
-				{ "slug": "scbb-blau-hell", "name": "SCBB Blau hell", "color": "#e8effb" }
+				{
+					"slug": "scbb-schwarz",
+					"name": "SCBB Schwarz",
+					"color": "#000000"
+				},
+				{
+					"slug": "scbb-weiss",
+					"name": "SCBB Weiß",
+					"color": "#ffffff"
+				},
+				{
+					"slug": "scbb-blau",
+					"name": "SCBB Königsblau",
+					"color": "#4169e1"
+				},
+				{
+					"slug": "scbb-blau-dunkel",
+					"name": "SCBB Blau dunkel",
+					"color": "#2a4cc4"
+				},
+				{
+					"slug": "scbb-herz",
+					"name": "SCBB Herz (Spenden)",
+					"color": "#e0245e"
+				},
+				{
+					"slug": "scbb-blau-hell",
+					"name": "SCBB Blau hell",
+					"color": "#eaf0fc"
+				}
 			]
 		},
 		"typography": {
@@ -18,13 +43,45 @@
 					"slug": "fira-sans",
 					"fontFamily": "\"Fira Sans\", sans-serif",
 					"fontFace": [
-						{ "src": ["file:./assets/fonts/fira-sans/FiraSans-Regular.woff2"], "fontWeight": "400", "fontStyle": "normal", "fontFamily": "\"Fira Sans\"" },
-						{ "src": ["file:./assets/fonts/fira-sans/FiraSans-Italic.woff2"], "fontWeight": "400", "fontStyle": "italic", "fontFamily": "\"Fira Sans\"" },
-						{ "src": ["file:./assets/fonts/fira-sans/FiraSans-SemiBold.woff2"], "fontWeight": "600", "fontStyle": "normal", "fontFamily": "\"Fira Sans\"" },
-						{ "src": ["file:./assets/fonts/fira-sans/FiraSans-Bold.woff2"], "fontWeight": "700", "fontStyle": "normal", "fontFamily": "\"Fira Sans\"" }
+						{
+							"src": [
+								"file:./assets/fonts/fira-sans/FiraSans-Regular.woff2"
+							],
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontFamily": "\"Fira Sans\""
+						},
+						{
+							"src": [
+								"file:./assets/fonts/fira-sans/FiraSans-Italic.woff2"
+							],
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"fontFamily": "\"Fira Sans\""
+						},
+						{
+							"src": [
+								"file:./assets/fonts/fira-sans/FiraSans-SemiBold.woff2"
+							],
+							"fontWeight": "600",
+							"fontStyle": "normal",
+							"fontFamily": "\"Fira Sans\""
+						},
+						{
+							"src": [
+								"file:./assets/fonts/fira-sans/FiraSans-Bold.woff2"
+							],
+							"fontWeight": "700",
+							"fontStyle": "normal",
+							"fontFamily": "\"Fira Sans\""
+						}
 					]
 				}
 			]
+		},
+		"layout": {
+			"contentSize": "820px",
+			"wideSize": "1240px"
 		}
 	},
 	"styles": {
@@ -33,10 +90,14 @@
 		},
 		"elements": {
 			"heading": {
-				"typography": { "fontFamily": "var:preset|font-family|fira-sans" }
+				"typography": {
+					"fontFamily": "var:preset|font-family|fira-sans"
+				}
 			},
 			"link": {
-				"color": { "text": "var:preset|color|scbb-blau" }
+				"color": {
+					"text": "var:preset|color|scbb-blau"
+				}
 			}
 		}
 	}

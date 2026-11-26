@@ -85,11 +85,11 @@ for p in "${PLUGINS_KEEP[@]-}"; do
 done
 
 echo "== 4. Pflichtseiten"
-ensure_page() {  # ensure_page <slug> <titel> [eltern-id]  – legt Seite als Entwurf an, falls nicht vorhanden
-  local id parent="${3:-0}"
+ensure_page() {  # ensure_page <slug> <titel> [eltern-id] [status beim Anlegen, Standard: draft]
+  local id parent="${3:-0}" status="${4:-draft}"
   id=$(wp post list --post_type=page --name="$1" --post_status=any --format=ids)
   if [ -z "$id" ]; then
-    wp post create --post_type=page --post_name="$1" --post_title="$2" --post_parent="$parent" --post_status=draft --porcelain
+    wp post create --post_type=page --post_name="$1" --post_title="$2" --post_parent="$parent" --post_status="$status" --porcelain
   else
     if [ "$parent" != "0" ] && [ "$(wp post get "$id" --field=post_parent)" != "$parent" ]; then
       wp post update "$id" --post_parent="$parent" >&2
@@ -119,6 +119,12 @@ sync_content "$IMPRESSUM_ID" impressum.html
 UEBER_ID=$(ensure_page ueber "Über uns")
 VORSTAND_ID=$(ensure_page vorstand "Vorstand" "$UEBER_ID")
 sync_content "$VORSTAND_ID" vorstand.html
+
+# Jugendseiten (Inhalt von littlecapa.com/jugendschach übernommen, 2026-11-26). Beim Anlegen direkt veröffentlicht.
+JUGEND_ID=$(ensure_page jugend "Schachjugend" 0 publish)
+TRAINING_ID=$(ensure_page training "Jugendschachtraining" "$JUGEND_ID" publish)
+sync_content "$JUGEND_ID" jugend.html
+sync_content "$TRAINING_ID" jugend-training.html
 
 # Seiten-Templates: nur das Standard-Template des Themes (Reste des Extendify-Themes zurücksetzen).
 for id in $(wp post list --post_type=page --post_status=any --format=ids); do
