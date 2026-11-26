@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.2.1
+Version: 0.3.0
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -215,6 +215,106 @@ Text Domain: scbb
 	font-size: 0.95rem;
 }
 
-.scbb-aktuelles {
-	margin-top: 0;
+
+/* ---------- Fußbereich ---------- */
+.wp-block-template-part:has(> .scbb-footer) {
+	margin-top: var(--wp--preset--spacing--60);
+}
+
+.scbb-footer {
+	background: #000;
+	border-top: 6px solid var(--wp--preset--color--scbb-blau);
+	color: #d7deec;
+	font-size: 0.95rem;
+}
+
+.scbb-footer a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.scbb-footer a:hover,
+.scbb-footer a:focus {
+	color: #9fbaf0;
+	text-decoration: underline;
+}
+
+.scbb-footer__inner {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr 1fr 1fr;
+	gap: 32px 48px;
+	padding: 48px max(24px, calc((100vw - 1240px) / 2));
+}
+
+.scbb-footer__logo img {
+	display: block;
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.scbb-footer__name {
+	margin: 14px 0 4px;
+	color: #fff;
+	font-size: 1.15rem;
+	font-weight: 600;
+}
+
+.scbb-footer__slogan {
+	margin: 0;
+	color: #9fbaf0;
+}
+
+.scbb-footer__titel {
+	margin: 0 0 12px;
+	color: #fff;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.scbb-footer p {
+	margin: 0 0 10px;
+	line-height: 1.5;
+}
+
+.scbb-footer ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.scbb-footer li {
+	margin: 0 0 6px;
+}
+
+.scbb-footer__klein {
+	font-size: 0.85rem;
+	color: #aab4c8;
+}
+
+.scbb-footer__unten {
+	padding: 14px max(24px, calc((100vw - 1240px) / 2));
+	border-top: 1px solid #1f2a44;
+	font-size: 0.85rem;
+	color: #aab4c8;
+}
+
+.scbb-footer__unten p {
+	margin: 0;
+}
+
+@media (max-width: 960px) {
+	.scbb-footer__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 560px) {
+	.scbb-footer__inner {
+		grid-template-columns: 1fr;
+		padding-block: 36px;
+	}
 }

@@ -53,6 +53,14 @@ for type in wp_template wp_template_part wp_global_styles; do
     wp post delete "$id" --force
   done
 done
+# Vereinslogo als Browser-Icon (Favicon) und Site-Logo; ersetzt den Springer aus dem Onboarding.
+LOGO_ID=$(wp post list --post_type=attachment --meta_key=_scbb_asset --meta_value=logo --format=ids)
+if [ -z "$LOGO_ID" ]; then
+  LOGO_ID=$(wp media import "$WP_PATH/wp-content/themes/$THEME/assets/logo.png" --title="Logo Schachclub Bonn/Beuel" --alt="Logo Schachclub Bonn/Beuel" --porcelain)
+  wp post meta update "$LOGO_ID" _scbb_asset logo
+fi
+wp option update site_icon "$LOGO_ID"
+wp option update site_logo "$LOGO_ID"
 # Solange die Seite 'Start' noch Entwurf ist: neueste Beiträge als Startseite (sonst 404).
 # TODO: beim Livegang auf show_on_front=page mit page_on_front=<ID der Startseite> umstellen.
 wp option update show_on_front posts

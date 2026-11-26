@@ -18,8 +18,10 @@ $scbb_turniere = array(
 	1 => 'Blitzturnier',
 	2 => 'Schnellschachturnier',
 );
-$scbb_ort = 'Tenten – Haus der Begegnung, An der Wolfsburg 1, 53225 Bonn-Beuel';
-$scbb_bus = 'Bus 163/550 und 640, Haltestelle „An der Wolfsburg“';
+// Spiellokal: zentral in functions.php (scbb_daten)
+$scbb_d   = scbb_daten();
+$scbb_ort = $scbb_d['ort_name'] . ', ' . $scbb_d['ort_strasse'] . ', ' . $scbb_d['ort_plz_ort'];
+$scbb_bus = $scbb_d['ort_bus'];
 // ----------------------------------------------
 
 // Nächsten Vereinsabend berechnen (heute zählt bis 22 Uhr mit).
