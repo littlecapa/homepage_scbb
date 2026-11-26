@@ -1,0 +1,320 @@
+/*
+Theme Name: SC Bonn Beuel
+Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
+Template: twentytwentyfive
+Version: 0.3.0
+Requires at least: 6.7
+Text Domain: scbb
+*/
+
+/* ---------- Kopfbereich ---------- */
+.scbb-header {
+	background: #000;
+	color: #fff;
+}
+
+.scbb-header__top {
+	position: relative;
+	min-height: 170px;
+	padding: 18px max(24px, calc((100vw - 1240px) / 2)) 18px max(24px, calc((100vw - 1240px) / 2));
+	gap: 28px;
+	background: #000 url("assets/header-board.svg") no-repeat right center / auto 100%;
+}
+
+.scbb-header__logo {
+	position: relative;
+	z-index: 2;
+	display: block;
+	flex: 0 0 auto;
+}
+
+.scbb-header__logo img {
+	display: block;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 0 0 4px #000, 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.scbb-header__titles {
+	gap: 4px !important;
+}
+
+.scbb-header .scbb-header__title,
+.scbb-header .scbb-header__title a {
+	margin: 0;
+	color: #fff;
+	font-size: clamp(1.6rem, 3vw, 2.4rem);
+	font-weight: 600;
+	line-height: 1.15;
+	text-decoration: none;
+}
+
+.scbb-header .scbb-header__tagline {
+	margin: 0;
+	color: #c9d6f2;
+	font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+/* ---------- Menüleiste ---------- */
+.scbb-header__nav {
+	background: var(--wp--preset--color--scbb-blau);
+	/* Erster Menüpunkt bündig mit dem Logo (Innenabstand der Links ausgleichen) */
+	padding: 0 max(24px, calc((100vw - 1240px) / 2)) 0 calc(max(24px, calc((100vw - 1240px) / 2)) - 16px);
+}
+
+.scbb-nav,
+.scbb-nav .wp-block-navigation__container {
+	gap: 0 !important;
+}
+
+.scbb-nav .wp-block-navigation-item__content {
+	display: block;
+	padding: 14px 16px;
+	color: #fff !important;
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.scbb-nav .wp-block-navigation-item__content:hover,
+.scbb-nav .wp-block-navigation-item__content:focus,
+.scbb-nav .current-menu-item > .wp-block-navigation-item__content {
+	background: var(--wp--preset--color--scbb-blau-dunkel);
+}
+
+.scbb-nav .wp-block-navigation__responsive-container-open {
+	color: #fff;
+	padding: 12px 0;
+}
+
+/* ---------- Schmale Bildschirme ---------- */
+@media (max-width: 781px) {
+	.scbb-abend {
+		padding: 20px;
+	}
+
+	.scbb-abend__liste dt {
+		flex-basis: 100%;
+	}
+
+	.scbb-header__top {
+		min-height: 110px;
+		gap: 16px;
+		background-image: none; /* Brett-Grafik würde den Slogan überdecken */
+	}
+
+	.scbb-header__logo img {
+		width: 84px;
+		height: 84px;
+	}
+
+	.scbb-header__nav {
+		padding-left: 24px;
+	}
+
+}
+
+/* Geöffnetes Handy-Menü: deckend blau, über allem */
+.scbb-nav .wp-block-navigation__responsive-container.is-menu-open {
+	z-index: 100000;
+	padding: 20px 24px;
+	background: var(--wp--preset--color--scbb-blau) !important;
+	color: #fff !important;
+	opacity: 1;
+}
+
+.scbb-nav .is-menu-open .wp-block-navigation__responsive-container-close {
+	color: #fff;
+}
+
+.scbb-nav .is-menu-open .wp-block-navigation__container {
+	gap: 4px !important;
+	padding-top: 32px;
+}
+
+.scbb-nav .is-menu-open .wp-block-navigation-item__content {
+	padding: 10px 0;
+	font-size: 1.1rem;
+}
+
+.scbb-header__logo {
+	z-index: 1;
+}
+
+/* ---------- Startseite: Vereinsabend ---------- */
+.scbb-abend {
+	margin-block: 0 var(--wp--preset--spacing--50);
+	padding: 24px 28px;
+	background: var(--wp--preset--color--scbb-blau-hell);
+	border-left: 6px solid var(--wp--preset--color--scbb-blau);
+	border-radius: 4px;
+}
+
+.scbb-abend__kopf {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px 24px;
+	margin-bottom: 16px;
+}
+
+.scbb-abend__titel {
+	margin: 0;
+	font-size: 1.6rem;
+	font-weight: 700;
+}
+
+.scbb-abend__titel span {
+	color: var(--wp--preset--color--scbb-blau);
+	font-weight: 600;
+}
+
+.scbb-abend__naechster {
+	margin: 0;
+	padding: 4px 12px;
+	background: var(--wp--preset--color--scbb-blau);
+	color: #fff;
+	border-radius: 999px;
+	font-size: 0.95rem;
+}
+
+.scbb-abend__spalten {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	gap: 0 48px;
+}
+
+.scbb-abend__liste {
+	margin: 0;
+}
+
+.scbb-abend__liste > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px 16px;
+	padding: 8px 0;
+	border-bottom: 1px solid rgba(47, 98, 201, 0.2);
+}
+
+.scbb-abend__liste dt {
+	flex: 0 0 10.5em;
+	font-weight: 600;
+}
+
+.scbb-abend__liste dd {
+	margin: 0;
+}
+
+.scbb-abend__ort {
+	margin: 16px 0 0;
+	font-size: 0.95rem;
+}
+
+
+/* ---------- Fußbereich ---------- */
+.wp-block-template-part:has(> .scbb-footer) {
+	margin-top: var(--wp--preset--spacing--60);
+}
+
+.scbb-footer {
+	background: #000;
+	border-top: 6px solid var(--wp--preset--color--scbb-blau);
+	color: #d7deec;
+	font-size: 0.95rem;
+}
+
+.scbb-footer a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.scbb-footer a:hover,
+.scbb-footer a:focus {
+	color: #9fbaf0;
+	text-decoration: underline;
+}
+
+.scbb-footer__inner {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr 1fr 1fr;
+	gap: 32px 48px;
+	padding: 48px max(24px, calc((100vw - 1240px) / 2));
+}
+
+.scbb-footer__logo img {
+	display: block;
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.scbb-footer__name {
+	margin: 14px 0 4px;
+	color: #fff;
+	font-size: 1.15rem;
+	font-weight: 600;
+}
+
+.scbb-footer__slogan {
+	margin: 0;
+	color: #9fbaf0;
+}
+
+.scbb-footer__titel {
+	margin: 0 0 12px;
+	color: #fff;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.scbb-footer p {
+	margin: 0 0 10px;
+	line-height: 1.5;
+}
+
+.scbb-footer ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.scbb-footer li {
+	margin: 0 0 6px;
+}
+
+.scbb-footer__klein {
+	font-size: 0.85rem;
+	color: #aab4c8;
+}
+
+.scbb-footer__unten {
+	padding: 14px max(24px, calc((100vw - 1240px) / 2));
+	border-top: 1px solid #1f2a44;
+	font-size: 0.85rem;
+	color: #aab4c8;
+}
+
+.scbb-footer__unten p {
+	margin: 0;
+}
+
+@media (max-width: 960px) {
+	.scbb-footer__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 560px) {
+	.scbb-footer__inner {
+		grid-template-columns: 1fr;
+		padding-block: 36px;
+	}
+}
