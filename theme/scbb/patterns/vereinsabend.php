@@ -13,6 +13,10 @@ $scbb_zeiten    = array(
 	'17:00–19:00 Uhr' => 'Jugendtraining',
 	'ab 19:30 Uhr'    => 'Spielabend',
 );
+// Einträge mit eigener Seite: Beschriftung => Pfad.
+$scbb_ziele = array(
+	'Jugendtraining' => '/jugend/',
+);
 // n-ter Dienstag im Monat => Turnier
 $scbb_turniere = array(
 	1 => 'Blitzturnier',
@@ -45,7 +49,7 @@ $scbb_datum   = $scbb_ist_heute ? 'Heute' : wp_date( 'l, j. F', $scbb_next->getT
 	<div class="scbb-abend__spalten">
 		<dl class="scbb-abend__liste">
 			<?php foreach ( $scbb_zeiten as $scbb_zeit => $scbb_was ) : ?>
-			<div><dt><?php echo esc_html( $scbb_zeit ); ?></dt><dd><?php echo esc_html( $scbb_was ); ?></dd></div>
+			<div><dt><?php echo esc_html( $scbb_zeit ); ?></dt><dd><?php if ( isset( $scbb_ziele[ $scbb_was ] ) ) : ?><a href="<?php echo esc_url( home_url( $scbb_ziele[ $scbb_was ] ) ); ?>"><?php echo esc_html( $scbb_was ); ?></a><?php else : ?><?php echo esc_html( $scbb_was ); ?><?php endif; ?></dd></div>
 			<?php endforeach; ?>
 		</dl>
 		<dl class="scbb-abend__liste">
