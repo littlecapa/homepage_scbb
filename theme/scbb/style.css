@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.1.3
+Version: 0.2.1
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -93,6 +93,14 @@ Text Domain: scbb
 
 /* ---------- Schmale Bildschirme ---------- */
 @media (max-width: 781px) {
+	.scbb-abend {
+		padding: 20px;
+	}
+
+	.scbb-abend__liste dt {
+		flex-basis: 100%;
+	}
+
 	.scbb-header__top {
 		min-height: 110px;
 		gap: 16px;
@@ -135,4 +143,78 @@ Text Domain: scbb
 
 .scbb-header__logo {
 	z-index: 1;
+}
+
+/* ---------- Startseite: Vereinsabend ---------- */
+.scbb-abend {
+	margin-block: 0 var(--wp--preset--spacing--50);
+	padding: 24px 28px;
+	background: var(--wp--preset--color--scbb-blau-hell);
+	border-left: 6px solid var(--wp--preset--color--scbb-blau);
+	border-radius: 4px;
+}
+
+.scbb-abend__kopf {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px 24px;
+	margin-bottom: 16px;
+}
+
+.scbb-abend__titel {
+	margin: 0;
+	font-size: 1.6rem;
+	font-weight: 700;
+}
+
+.scbb-abend__titel span {
+	color: var(--wp--preset--color--scbb-blau);
+	font-weight: 600;
+}
+
+.scbb-abend__naechster {
+	margin: 0;
+	padding: 4px 12px;
+	background: var(--wp--preset--color--scbb-blau);
+	color: #fff;
+	border-radius: 999px;
+	font-size: 0.95rem;
+}
+
+.scbb-abend__spalten {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	gap: 0 48px;
+}
+
+.scbb-abend__liste {
+	margin: 0;
+}
+
+.scbb-abend__liste > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px 16px;
+	padding: 8px 0;
+	border-bottom: 1px solid rgba(47, 98, 201, 0.2);
+}
+
+.scbb-abend__liste dt {
+	flex: 0 0 10.5em;
+	font-weight: 600;
+}
+
+.scbb-abend__liste dd {
+	margin: 0;
+}
+
+.scbb-abend__ort {
+	margin: 16px 0 0;
+	font-size: 0.95rem;
+}
+
+.scbb-aktuelles {
+	margin-top: 0;
 }
