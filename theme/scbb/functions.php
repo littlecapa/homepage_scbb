@@ -16,6 +16,7 @@ function scbb_daten() {
 		'ort_strasse' => 'An der Wolfsburg 1',
 		'ort_plz_ort' => '53225 Bonn-Beuel',
 		'ort_bus'     => 'Bus 163/550 und 640, Haltestelle „An der Wolfsburg“',
+		'ort_bus_en'  => 'Bus 163/550 and 640, stop “An der Wolfsburg”',
 		'instagram'   => 'https://www.instagram.com/schachclub_bonn_beuel/',
 		'insta_name'  => '@schachclub_bonn_beuel',
 		'spenden'     => 'https://www.hiermitherz.de/project/unterstuetzung-der-schachjugend-des-sc-bonn-beuel-3c0610/',
