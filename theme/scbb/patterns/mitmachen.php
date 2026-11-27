@@ -15,7 +15,7 @@ $scbb_d = scbb_daten();
 		<span class="scbb-kachel__icon"><?php echo scbb_icon_herz( 30 ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 		<span class="scbb-kachel__text">
 			<strong>Unterstützt unsere Schachjugend</strong>
-			<span>Mit einer Spende für unser Projekt bei „Hier mit Herz“ unterstützt ihr die Jugendarbeit unseres Vereins.</span>
+			<span>Mit einer Spende unterstützt ihr die Jugendarbeit unseres Vereins.</span>
 		</span>
 		<span class="scbb-kachel__pfeil" aria-hidden="true">→</span>
 	</a>

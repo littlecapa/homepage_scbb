@@ -98,7 +98,7 @@ $scbb_ordinal = static function ( $n, $sprache ) {
 				<?php endforeach; ?>
 			</dl>
 		</div>
-		<p class="scbb-abend__ort"><strong><?php echo esc_html( $scbb_tx['ort'] ); ?></strong> <?php echo esc_html( $scbb_ort ); ?><br><?php echo esc_html( $scbb_bus[ $scbb_l ] ); ?></p>
+		<div class="scbb-abend__ort"><p><strong><?php echo esc_html( $scbb_tx['ort'] ); ?></strong> <?php echo esc_html( $scbb_ort ); ?></p><p><?php echo esc_html( $scbb_bus[ $scbb_l ] ); ?></p></div>
 	</div>
 	<?php endforeach; ?>
 	<script>

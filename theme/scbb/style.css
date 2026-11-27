@@ -2,15 +2,15 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.6.1
+Version: 0.7.1
 Requires at least: 6.7
 Text Domain: scbb
 */
 
 /* ---------- Kopfbereich ---------- */
 .scbb-header {
-	background: #000;
-	color: #fff;
+	background: #fff;
+	color: #000;
 }
 
 .scbb-header__top {
@@ -18,7 +18,7 @@ Text Domain: scbb
 	min-height: 170px;
 	padding: 18px max(24px, calc((100vw - 1240px) / 2)) 18px max(24px, calc((100vw - 1240px) / 2));
 	gap: 28px;
-	background: #000 url("assets/header-board.svg?v=3") no-repeat right center / auto 100%;
+	background: #fff url("assets/header-board.svg?v=4") no-repeat right center / auto 100%;
 }
 
 .scbb-header__logo {
@@ -34,7 +34,6 @@ Text Domain: scbb
 	height: 150px;
 	border-radius: 50%;
 	background: #fff;
-	box-shadow: 0 0 0 4px #000, 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
 .scbb-header__titles {
@@ -44,7 +43,7 @@ Text Domain: scbb
 .scbb-header .scbb-header__title,
 .scbb-header .scbb-header__title a {
 	margin: 0;
-	color: #fff;
+	color: #000;
 	font-size: clamp(1.6rem, 3vw, 2.4rem);
 	font-weight: 600;
 	line-height: 1.15;
@@ -53,7 +52,7 @@ Text Domain: scbb
 
 .scbb-header .scbb-header__tagline {
 	margin: 0;
-	color: #c9d6f2;
+	color: var(--wp--preset--color--scbb-blau-dunkel);
 	font-size: clamp(1rem, 1.6vw, 1.2rem);
 }
 
@@ -94,7 +93,12 @@ Text Domain: scbb
 /* ---------- Schmale Bildschirme ---------- */
 @media (max-width: 781px) {
 	.scbb-abend {
-		padding: 20px;
+		padding: 14px 16px;
+	}
+
+	.scbb-abend__kopf {
+		padding-right: 0;
+		padding-top: 22px;
 	}
 
 	.scbb-abend__liste dt {
@@ -147,8 +151,9 @@ Text Domain: scbb
 
 /* ---------- Startseite: Vereinsabend ---------- */
 .scbb-abend {
-	margin-block: 0 var(--wp--preset--spacing--50);
-	padding: 24px 28px;
+	position: relative;
+	margin-block: 0 var(--wp--preset--spacing--40);
+	padding: 14px 20px;
 	background: var(--wp--preset--color--scbb-blau-hell);
 	border-left: 6px solid var(--wp--preset--color--scbb-blau);
 	border-radius: 4px;
@@ -159,8 +164,9 @@ Text Domain: scbb
 	flex-wrap: wrap;
 	align-items: baseline;
 	justify-content: space-between;
-	gap: 8px 24px;
-	margin-bottom: 16px;
+	gap: 6px 20px;
+	margin-bottom: 8px;
+	padding-right: 96px; /* Platz für den Sprachumschalter */
 }
 
 .scbb-abend__titel {
@@ -197,7 +203,7 @@ Text Domain: scbb
 	display: flex;
 	flex-wrap: wrap;
 	gap: 2px 16px;
-	padding: 8px 0;
+	padding: 5px 0;
 	border-bottom: 1px solid rgba(65, 105, 225, 0.22);
 }
 
@@ -211,8 +217,15 @@ Text Domain: scbb
 }
 
 .scbb-abend__ort {
-	margin: 16px 0 0;
-	font-size: 0.95rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	gap: 2px 48px;
+	margin-top: 8px;
+	font-size: 0.9rem;
+}
+
+.scbb-abend__ort p {
+	margin: 0;
 }
 
 
@@ -252,7 +265,6 @@ Text Domain: scbb
 	height: 72px;
 	border-radius: 50%;
 	background: #fff;
-	box-shadow: 0 0 0 2px #000;
 }
 
 .scbb-footer__name {
@@ -389,15 +401,15 @@ Text Domain: scbb
 .scbb-kacheln {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-	gap: 20px;
-	margin-block: 0 var(--wp--preset--spacing--50);
+	gap: 16px;
+	margin-block: 0 var(--wp--preset--spacing--40);
 }
 
 .scbb-kachel {
 	display: flex;
 	align-items: center;
-	gap: 18px;
-	padding: 20px 24px;
+	gap: 14px;
+	padding: 12px 18px;
 	border-radius: 6px;
 	color: #fff;
 	text-decoration: none;
@@ -423,8 +435,8 @@ Text Domain: scbb
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	flex: 0 0 56px;
-	height: 56px;
+	flex: 0 0 44px;
+	height: 44px;
 	border-radius: 50%;
 	background: #fff;
 }
@@ -440,12 +452,12 @@ Text Domain: scbb
 .scbb-kachel__text {
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
-	line-height: 1.4;
+	gap: 2px;
+	line-height: 1.35;
 }
 
 .scbb-kachel__text strong {
-	font-size: 1.15rem;
+	font-size: 1.1rem;
 }
 
 .scbb-kachel__text span {
@@ -576,11 +588,14 @@ a.scbb-pfeil:hover {
 
 /* Vereinsabend: Sprachumschalter DE/EN (nur diese Kachel) */
 .scbb-sprache {
+	position: absolute;
+	top: 12px;
+	right: 16px;
+	z-index: 1;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	gap: 0.45em;
-	margin-bottom: 0.5rem;
 	font-size: 0.8rem;
 	font-weight: 700;
 	letter-spacing: 0.05em;
