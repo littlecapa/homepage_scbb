@@ -33,7 +33,7 @@ BILD_AUSLASSEN = {12, 5787, 100}
 LINKS = {
     'https://scbb.de/turniere/blitzturnierserie/': '/turniere/blitzturniere/',
     'https://scbb.de/turniere/schnellturnierserie/': '/turniere/schnellschachturniere/',
-    'https://scbb.de/turniere/vereinsschnellschachmeisterschaft/': '/turniere/',
+    'https://scbb.de/turniere/vereinsschnellschachmeisterschaft/': '/turniere/vereinsschnellschachmeisterschaft/',
     'https://scbb.de/termine/': '/termine/',
 }
 

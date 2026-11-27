@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.9.7
+Version: 0.9.9
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -1034,4 +1034,21 @@ b {
 .scbb-abend__naechster a:hover,
 .scbb-abend__naechster a:focus {
 	text-decoration-thickness: 2px;
+}
+
+/* Karten 2×2 (Turniere-Übersicht mit vier Turnieren), auf dem Handy untereinander */
+.scbb-karten--2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 560px) {
+	.scbb-karten--2 {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Zwischenüberschriften (h3) direkt im Seitentext, z. B. Schutzkonzept 1.1, 1.2 …:
+   gleiche Größe wie Fließtext, daher fett und mit Abstand. Karten-h3 (verschachtelt) bleiben unberührt. */
+.wp-block-post-content > h3.wp-block-heading {
+	font-weight: 600;
+	margin-top: 2rem;
 }

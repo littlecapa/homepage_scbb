@@ -118,11 +118,24 @@ sync_content() {  # sync_content <post-id> <datei>
   rm -f "$tmp"
 }
 sync_content "$IMPRESSUM_ID" impressum.html
+sync_content "$PRIVACY_ID" datenschutz.html  # von scbb.de übernommen (2026-11-27), veröffentlicht von Hand
 
 # Vereinsseiten aus dem Repo (Inhalte mit Namen, die sich nur bei Wahlen ändern).
 UEBER_ID=$(ensure_page ueber "Über uns")
 VORSTAND_ID=$(ensure_page vorstand "Vorstand" "$UEBER_ID")
+SATZUNG_ID=$(ensure_page satzung "Satzung" "$UEBER_ID" publish)
+DSO_ID=$(ensure_page datenschutzordnung "Datenschutzordnung" "$UEBER_ID" publish)
+SCHUTZ_ID=$(ensure_page schutzkonzept "Schutzkonzept" "$UEBER_ID" publish)  # Kinder-/Jugendschutz, Version 1.0 vom 09.07.2026
+sync_content "$UEBER_ID" ueber.html          # Inhalt von scbb.de/verein (2026-11-27)
 sync_content "$VORSTAND_ID" vorstand.html
+sync_content "$SATZUNG_ID" satzung.html
+sync_content "$DSO_ID" datenschutzordnung.html
+sync_content "$SCHUTZ_ID" schutzkonzept.html
+# Über uns + Vorstand wurden als Entwurf angelegt; seit 2026-11-27 mit Inhalt -> veröffentlichen.
+[ "$(wp post get "$UEBER_ID" --field=post_title)" = "Über uns" ] || wp post update "$UEBER_ID" --post_title="Über uns"  # hieß früher „Über“
+for id in "$UEBER_ID" "$VORSTAND_ID"; do
+  [ "$(wp post get "$id" --field=post_status)" = publish ] || wp post update "$id" --post_status=publish
+done
 
 # Jugendseiten (Inhalt von littlecapa.com/jugendschach übernommen, 2026-11-26). Beim Anlegen direkt veröffentlicht.
 JUGEND_ID=$(ensure_page jugend "Schachjugend" 0 publish)
@@ -148,15 +161,23 @@ SCHNELL_ID=$(ensure_page schnellschachturniere "Schnellschachturniere" "$TURNIER
 sync_content "$VM_ID" turniere-vereinsmeisterschaft.html
 sync_content "$BLITZ_ID" turniere-blitz.html
 sync_content "$SCHNELL_ID" turniere-schnellschach.html
-# Archiv der Vereinsmeisterschaft (Saisons 2015/16–2025/26, von scbb.de übernommen, Slugs wie dort):
-# je Saison content/vereinsmeisterschaft/<slug>.html, Seitentitel aus der Kopfzeile „<!-- Titel: … -->“
-for f in "$HOME/scbb-content/vereinsmeisterschaft/"*.html; do
-  [ -f "$f" ] || continue
-  slug=$(basename "$f" .html)
-  titel=$(sed -n 's/^<!-- Titel: \(.*\) -->$/\1/p' "$f")
-  A_ID=$(ensure_page "$slug" "$titel" "$VM_ID" publish)
-  sync_content "$A_ID" "vereinsmeisterschaft/$slug.html"
-done
+# Vereinsschnellschachmeisterschaft (/turniere/vereinsschnellschachmeisterschaft/, von scbb.de übernommen) mit Archiv
+VSSM_ID=$(ensure_page vereinsschnellschachmeisterschaft "Vereinsschnellschachmeisterschaft" "$TURNIERE_ID" publish)
+sync_content "$VSSM_ID" turniere-vereinsschnellschachmeisterschaft.html
+# Archive (Vereinsmeisterschaft, Vereinsschnellschachmeisterschaft): je Saison/Jahr content/<ordner>/<slug>.html,
+# Seitentitel aus der Kopfzeile „<!-- Titel: … -->“, Elternseite = Hauptseite des Turniers
+archiv_seiten() {  # archiv_seiten <ordner> <eltern-id>
+  local f slug titel a_id
+  for f in "$HOME/scbb-content/$1/"*.html; do
+    [ -f "$f" ] || continue
+    slug=$(basename "$f" .html)
+    titel=$(sed -n 's/^<!-- Titel: \(.*\) -->$/\1/p' "$f")
+    a_id=$(ensure_page "$slug" "$titel" "$2" publish)
+    sync_content "$a_id" "$1/$slug.html"
+  done
+}
+archiv_seiten vereinsmeisterschaft "$VM_ID"
+archiv_seiten vereinsschnellschachmeisterschaft "$VSSM_ID"
 sync_content "$MANNSCHAFTEN_ID" mannschaften.html
 # Unterseiten Mannschaften: /mannschaften/1-mannschaft/ … /5-mannschaft/ (Slugs wie auf scbb.de), /u16/, /u20/
 for n in 1 2 3 4 5; do
