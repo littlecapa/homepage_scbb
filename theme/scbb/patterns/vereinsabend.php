@@ -20,10 +20,10 @@ $scbb_zeiten    = array(
 		'was'  => array( 'de' => 'Spielabend', 'en' => 'Open play' ),
 	),
 );
-// n-ter Dienstag im Monat => Turnier
+// n-ter Dienstag im Monat => Turnier (mit Link auf die Turnierseite)
 $scbb_turniere = array(
-	1 => array( 'de' => 'Blitzturnier', 'en' => 'Blitz tournament' ),
-	2 => array( 'de' => 'Schnellschachturnier', 'en' => 'Rapid tournament' ),
+	1 => array( 'de' => 'Blitzturnier', 'en' => 'Blitz tournament', 'ziel' => '/turniere/blitzturniere/' ),
+	2 => array( 'de' => 'Schnellschachturnier', 'en' => 'Rapid tournament', 'ziel' => '/turniere/schnellschachturniere/' ),
 );
 // Feste Texte
 $scbb_t = array(
@@ -83,7 +83,7 @@ $scbb_ordinal = static function ( $n, $sprache ) {
 		<div class="scbb-abend__kopf">
 			<h2 class="scbb-abend__titel"><?php echo esc_html( $scbb_tx['titel'] ); ?> <span><?php echo esc_html( $scbb_tx['titel2'] ); ?></span></h2>
 			<p class="scbb-abend__naechster">
-				<?php echo esc_html( $scbb_tx['naechster'] ); ?> <strong><?php echo esc_html( $scbb_datum[ $scbb_l ] ); ?></strong><?php if ( $scbb_extra ) : ?> – <?php echo esc_html( $scbb_tx['mit'] ); ?> <strong><?php echo esc_html( $scbb_extra[ $scbb_l ] ); ?></strong><?php endif; ?>
+				<?php echo esc_html( $scbb_tx['naechster'] ); ?> <strong><?php echo esc_html( $scbb_datum[ $scbb_l ] ); ?></strong><?php if ( $scbb_extra ) : ?> – <?php echo esc_html( $scbb_tx['mit'] ); ?> <strong><a href="<?php echo esc_url( home_url( $scbb_extra['ziel'] ) ); ?>"><?php echo esc_html( $scbb_extra[ $scbb_l ] ); ?></a></strong><?php endif; ?>
 			</p>
 		</div>
 		<div class="scbb-abend__spalten">
@@ -94,7 +94,7 @@ $scbb_ordinal = static function ( $n, $sprache ) {
 			</dl>
 			<dl class="scbb-abend__liste">
 				<?php foreach ( $scbb_turniere as $scbb_n => $scbb_turnier ) : ?>
-				<div><dt><?php echo esc_html( sprintf( $scbb_tx['nter'], $scbb_ordinal( $scbb_n, $scbb_l ) ) ); ?></dt><dd><?php echo esc_html( $scbb_turnier[ $scbb_l ] ); ?></dd></div>
+				<div><dt><?php echo esc_html( sprintf( $scbb_tx['nter'], $scbb_ordinal( $scbb_n, $scbb_l ) ) ); ?></dt><dd><a href="<?php echo esc_url( home_url( $scbb_turnier['ziel'] ) ); ?>"><?php echo esc_html( $scbb_turnier[ $scbb_l ] ); ?></a></dd></div>
 				<?php endforeach; ?>
 			</dl>
 		</div>

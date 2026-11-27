@@ -11,9 +11,14 @@
 		<!-- wp:post-template -->
 			<!-- wp:group {"className":"scbb-news__eintrag","layout":{"type":"default"}} -->
 			<div class="wp-block-group scbb-news__eintrag">
-				<!-- wp:post-date {"format":"j. F Y","className":"scbb-news__datum"} /-->
-				<!-- wp:post-title {"level":2,"isLink":true,"className":"scbb-news__titel"} /-->
-				<!-- wp:post-excerpt {"moreText":"Weiterlesen","excerptLength":40} /-->
+				<!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium","className":"scbb-news__bild"} /-->
+				<!-- wp:group {"className":"scbb-news__text","layout":{"type":"default"}} -->
+				<div class="wp-block-group scbb-news__text">
+					<!-- wp:post-date {"format":"j. F Y","className":"scbb-news__datum"} /-->
+					<!-- wp:post-title {"level":2,"isLink":true,"className":"scbb-news__titel"} /-->
+					<!-- wp:post-excerpt {"moreText":"Weiterlesen","excerptLength":40} /-->
+				</div>
+				<!-- /wp:group -->
 			</div>
 			<!-- /wp:group -->
 		<!-- /wp:post-template -->

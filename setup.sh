@@ -135,6 +135,13 @@ wp option update page_for_posts "$NEWS_ID"
 TURNIERE_ID=$(ensure_page turniere "Turniere" 0 publish)
 MANNSCHAFTEN_ID=$(ensure_page mannschaften "Mannschaften" 0 publish)
 sync_content "$TURNIERE_ID" turniere.html
+# Unterseiten Turniere: /turniere/vereinsmeisterschaft/, /turniere/blitzturniere/, /turniere/schnellschachturniere/
+VM_ID=$(ensure_page vereinsmeisterschaft "Vereinsmeisterschaft" "$TURNIERE_ID" publish)
+BLITZ_ID=$(ensure_page blitzturniere "Blitzturniere" "$TURNIERE_ID" publish)
+SCHNELL_ID=$(ensure_page schnellschachturniere "Schnellschachturniere" "$TURNIERE_ID" publish)
+sync_content "$VM_ID" turniere-vereinsmeisterschaft.html
+sync_content "$BLITZ_ID" turniere-blitz.html
+sync_content "$SCHNELL_ID" turniere-schnellschach.html
 sync_content "$MANNSCHAFTEN_ID" mannschaften.html
 
 # Seiten-Templates: nur das Standard-Template des Themes (Reste des Extendify-Themes zurücksetzen).

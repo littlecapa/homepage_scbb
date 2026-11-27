@@ -22,7 +22,7 @@ $scbb_bereiche = array(
 		'titel' => 'Turniere',
 		'pfad'  => '/turniere/',
 		'link'  => 'Zu den Turnieren',
-		'text'  => 'Jeden Monat zwei Vereinsturniere am Dienstagabend: am 1. Dienstag Blitz, am 2. Dienstag Schnellschach.',
+		'text'  => 'Jeden Monat zwei Vereinsturniere am Dienstagabend: am 1. Dienstag <a href="/turniere/blitzturniere/">Blitz</a>, am 2. Dienstag <a href="/turniere/schnellschachturniere/">Schnellschach</a>.', // einfache Links erlaubt
 	),
 	'mannschaften' => array(
 		'titel' => 'Mannschaften',
@@ -70,7 +70,7 @@ $scbb_news = get_posts(
 		<p>Hier erscheinen Neuigkeiten und Berichte aus dem Verein.</p>
 			<?php endif; ?>
 		<?php else : ?>
-		<p><?php echo esc_html( $scbb_b['text'] ); ?></p>
+		<p><?php echo wp_kses( $scbb_b['text'], array( 'a' => array( 'href' => true ) ) ); ?></p>
 		<?php endif; ?>
 		<p class="scbb-bereich__mehr"><a href="<?php echo esc_url( home_url( $scbb_b['pfad'] ) ); ?>"><?php echo esc_html( $scbb_b['link'] ); ?> <span aria-hidden="true">→</span></a></p>
 	</article>
