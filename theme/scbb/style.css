@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.8.4
+Version: 0.8.9
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -679,6 +679,11 @@ a.scbb-pfeil:hover {
 	text-decoration: none;
 }
 
+.scbb-bereich p,
+.scbb-bereich__liste {
+	font-size: 1rem; /* nie größer als der Bereichstitel (1.3rem) */
+}
+
 .scbb-bereich p {
 	margin: 0 0 8px;
 	line-height: 1.45;
@@ -766,4 +771,86 @@ a.scbb-pfeil:hover {
 .scbb-news__titel {
 	margin: 2px 0 6px;
 	font-size: 1.35rem;
+}
+
+/* ---------- Mannschaftsseiten: Tabellen (Aufstellung, Termine) ---------- */
+.scbb-tabelle {
+	overflow-x: auto; /* breite Tabellen auf dem Handy seitlich wischen */
+	font-size: 0.85rem;
+	margin-block: 0.5em 1em;
+}
+.scbb-tabelle table {
+	width: 100%;
+	border-collapse: collapse;
+	font-variant-numeric: tabular-nums;
+}
+.scbb-tabelle th,
+.scbb-tabelle td {
+	padding: 4px 6px;
+	border: 0;
+	border-bottom: 1px solid #dbe3f5;
+	text-align: center;
+	white-space: nowrap;
+}
+.scbb-tabelle thead th {
+	background: var(--wp--preset--color--scbb-blau);
+	color: #fff;
+	font-weight: 600;
+	border-bottom: 0;
+}
+.scbb-tabelle tbody tr:nth-child(even) {
+	background: #f5f8fe;
+}
+.scbb-tabelle tfoot td {
+	font-weight: 700;
+	border-top: 2px solid var(--wp--preset--color--scbb-blau);
+	border-bottom: 0;
+}
+/* Namen und Mannschaften linksbündig */
+.scbb-tabelle td:nth-child(2),
+.scbb-tabelle th:nth-child(2) {
+	text-align: left;
+}
+.scbb-tabelle table:has(th:nth-child(5):last-child) :is(td, th):is(:nth-child(3), :nth-child(4)) {
+	text-align: left; /* Termine: Heim und Gast */
+}
+.scbb-tabelle table:has(th:nth-child(5):last-child) td:nth-child(2) {
+	text-align: center; /* Termine: Datum */
+}
+.scbb-tabelle tfoot td:first-child {
+	text-align: left;
+}
+.scbb-klein {
+	font-size: 0.9rem;
+	color: #555;
+}
+.scbb-mf {
+	margin-top: 0.25em !important;
+}
+.scbb-ergebnislinks {
+	padding: 14px 20px !important;
+}
+/* Spielplan mit Spalte „Paar“ (Jugend): Heim und Gast linksbündig */
+.scbb-tabelle--paar td:nth-child(2),
+.scbb-tabelle--paar th:nth-child(2) {
+	text-align: center;
+}
+.scbb-tabelle--paar :is(td, th):is(:nth-child(4), :nth-child(5)) {
+	text-align: left;
+}
+
+/* Karten: Text und Pfeil-Links nie größer als die Kartenüberschrift (h3 = 1.15rem) */
+.scbb-karte p {
+	font-size: 1rem;
+}
+
+/* Karten fest in 3 Spalten (z. B. Übersicht Mannschaften: 2 Reihen à 3), auf schmalen Bildschirmen 2 bzw. 1 */
+.scbb-karten--3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 700px) {
+	.scbb-karten--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+	.scbb-karten--3 { grid-template-columns: 1fr; }
 }

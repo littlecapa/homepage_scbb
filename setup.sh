@@ -143,6 +143,15 @@ sync_content "$VM_ID" turniere-vereinsmeisterschaft.html
 sync_content "$BLITZ_ID" turniere-blitz.html
 sync_content "$SCHNELL_ID" turniere-schnellschach.html
 sync_content "$MANNSCHAFTEN_ID" mannschaften.html
+# Unterseiten Mannschaften: /mannschaften/1-mannschaft/ … /5-mannschaft/ (Slugs wie auf scbb.de), /u16/, /u20/
+for n in 1 2 3 4 5; do
+  M_ID=$(ensure_page "$n-mannschaft" "$n. Mannschaft" "$MANNSCHAFTEN_ID" publish)
+  sync_content "$M_ID" "mannschaften-$n.html"
+done
+U16_ID=$(ensure_page u16 "U16" "$MANNSCHAFTEN_ID" publish)
+U20_ID=$(ensure_page u20 "U20" "$MANNSCHAFTEN_ID" publish)
+sync_content "$U16_ID" mannschaften-u16.html
+sync_content "$U20_ID" mannschaften-u20.html
 
 # Seiten-Templates: nur das Standard-Template des Themes (Reste des Extendify-Themes zurücksetzen).
 for id in $(wp post list --post_type=page --post_status=any --format=ids); do
