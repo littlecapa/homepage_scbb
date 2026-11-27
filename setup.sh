@@ -153,6 +153,11 @@ U20_ID=$(ensure_page u20 "U20" "$MANNSCHAFTEN_ID" publish)
 sync_content "$U16_ID" mannschaften-u16.html
 sync_content "$U20_ID" mannschaften-u20.html
 
+# Termine (/termine/): Tabelle „Nächste Termine“, monatlich weiterrollen (content/termine.html)
+TERMINE_ID=$(ensure_page termine "Nächste Termine" 0 publish)
+wp post update "$TERMINE_ID" --post_title="Nächste Termine" >/dev/null  # Titel auch bei bestehender Seite
+sync_content "$TERMINE_ID" termine.html
+
 # Seiten-Templates: nur das Standard-Template des Themes (Reste des Extendify-Themes zurücksetzen).
 for id in $(wp post list --post_type=page --post_status=any --format=ids); do
   tpl=$(wp post meta get "$id" _wp_page_template 2>/dev/null || true)
