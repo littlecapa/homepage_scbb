@@ -18,6 +18,9 @@ from pathlib import Path
 
 from PIL import Image
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pgn_block import rpb_block  # noqa: E402
+
 API = 'https://scbb.de/wp-json/wp/v2'
 ZIEL = Path(__file__).resolve().parent.parent / 'content' / 'news' / 'archiv'
 
@@ -64,15 +67,9 @@ def bildblock(name, alt, caption):
 def umwandeln(c, ordner):
     out = ''
     c = c.replace('<p><!--more--></p>', '').replace('<!--more-->', '')
-    # PGN-Viewer (Plugin embed-chessboard) -> Partie als aufklappbarer Text
+    # PGN-Viewer der alten Seite (Plugin embed-chessboard) -> nachspielbarer Block des Plugins RPB Chessboard
     def pgn(m):
-        t = html.unescape(m.group(1)).strip()
-        kopf = dict(re.findall(r'\[(\w+) "([^"]*)"\]', t))
-        züge = re.sub(r'\s*\[\w+ "[^"]*"\]\s*', '', t).strip()
-        tags = '\n'.join(f'[{k} "{v}"]' for k, v in kopf.items())
-        titel = f'Partie {kopf.get("White", "")} – {kopf.get("Black", "")} ({kopf.get("Result", "")})'
-        return ('\x00' + f'<!-- wp:details -->\n<details class="wp-block-details"><summary>{html.escape(titel)}</summary>'
-                f'<!-- wp:code -->\n<pre class="wp-block-code"><code>{html.escape(tags + chr(10) + chr(10) + züge)}</code></pre>\n<!-- /wp:code --></details>\n<!-- /wp:details -->\n\n' + '\x00')
+        return '\x00' + rpb_block(html.unescape(m.group(1))) + '\n\n\x00'
     c = re.sub(r"<div class='chessboard-wrapper'>.*?<textarea[^>]*>(.*?)</textarea>.*?</iframe></div>", pgn, c, flags=re.S)
     # Bilder mit Bildunterschrift
     def bild(m):

@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.9.5
+Version: 0.9.7
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -934,4 +934,104 @@ a.scbb-pfeil:hover {
 strong,
 b {
 	font-weight: 600;
+}
+
+/* ---------- Startseite: Fotoband der neuesten News (patterns/fotoband.php) ---------- */
+.scbb-fotoband {
+	margin-block: 0 var(--wp--preset--spacing--40);
+}
+.scbb-fotoband__spur {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 16px;
+}
+.scbb-fotoband__foto {
+	position: relative;
+	display: block;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	border-radius: 6px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+	background: #eaf0fc;
+}
+.scbb-fotoband__foto img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+.scbb-fotoband__foto:hover img,
+.scbb-fotoband__foto:focus-visible img {
+	transform: scale(1.04);
+}
+.scbb-fotoband__titel {
+	position: absolute;
+	inset: auto 0 0 0;
+	padding: 28px 10px 8px;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	color: #fff;
+	font-size: 0.85rem;
+	font-weight: 600;
+	line-height: 1.25;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.scbb-fotoband__punkte {
+	display: none;
+}
+
+/* Handy: Karussell – immer ein Foto, seitlich wischen; Punkte zeigen die Position */
+@media (max-width: 700px) {
+	.scbb-fotoband__spur {
+		display: flex;
+		gap: 0;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		border-radius: 6px;
+	}
+	.scbb-fotoband__spur::-webkit-scrollbar {
+		display: none;
+	}
+	.scbb-fotoband__foto {
+		flex: 0 0 100%;
+		scroll-snap-align: start;
+		border-radius: 0;
+		box-shadow: none;
+	}
+	.scbb-fotoband__titel {
+		font-size: 0.95rem;
+	}
+	.scbb-fotoband__punkte {
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+		margin-top: 8px;
+	}
+	.scbb-fotoband__punkte button {
+		width: 9px;
+		height: 9px;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: #c5d2f0;
+		cursor: pointer;
+	}
+	.scbb-fotoband__punkte button.ist-aktiv {
+		background: var(--wp--preset--color--scbb-blau);
+	}
+}
+
+/* Vereinsabend: Turnier-Link in der blauen Pille „Nächster Termin“ weiß statt blau auf blau */
+.scbb-abend__naechster a {
+	color: #fff;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+.scbb-abend__naechster a:hover,
+.scbb-abend__naechster a:focus {
+	text-decoration-thickness: 2px;
 }

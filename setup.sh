@@ -67,7 +67,8 @@ echo "== 3. Plugins"
 # Erlaubte Plugins: alles, was hier nicht steht, wird entfernt.
 # IONOS-System-Plugins (ionos-*) und Must-Use-Plugins (Installatron-Automatik) werden nicht angefasst.
 PLUGINS_KEEP=(
-  # Bewusst leer (Entscheidung 2026-11-26). Neues Plugin nur mit Begründung als Kommentar.
+  # Neues Plugin nur mit Begründung als Kommentar (Grundsatz seit 2026-11-26: so wenige wie möglich).
+  rpb-chessboard  # 2026-11-27: Partien nachspielbar (PGN-Viewer); Editor-Block „Schachpartie“ für News. Gepflegt, ohne externe Dienste.
 )
 for p in $(wp plugin list --status=active --field=name; wp plugin list --status=inactive --field=name); do
   case "$p" in ionos-*) continue ;; esac
@@ -81,6 +82,11 @@ for p in "${PLUGINS_KEEP[@]-}"; do
   wp plugin is-installed "$p" || wp plugin install "$p"
   wp plugin activate "$p"
 done
+# RPB Chessboard: Brett links fest neben der scrollbaren Notation (Standard „frame“ zeigt das Brett nur als Popup),
+# Felder 40 px (Brett 320 px), ohne Zuggeräusch. Figuren in der Notation deutsch (K, D, T, L, S).
+wp option update rpbchessboard_navigationBoard scrollLeft
+wp option update rpbchessboard_nboSquareSize 40
+wp option update rpbchessboard_playSound 0
 
 echo "== 4. Pflichtseiten"
 ensure_page() {  # ensure_page <slug> <titel> [eltern-id] [status beim Anlegen, Standard: draft]

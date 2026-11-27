@@ -31,7 +31,6 @@ $scbb_t = array(
 		'titel'     => 'Vereinsabend',
 		'titel2'    => 'jeden Dienstag',
 		'naechster' => 'Nächster Termin:',
-		'mit'       => 'mit',
 		'heute'     => 'Heute',
 		'nter'      => '%s. Dienstag im Monat',
 		'ort'       => 'Spiellokal:',
@@ -40,7 +39,6 @@ $scbb_t = array(
 		'titel'     => 'Club night',
 		'titel2'    => 'every Tuesday',
 		'naechster' => 'Next date:',
-		'mit'       => 'with',
 		'heute'     => 'Today',
 		'nter'      => '%s Tuesday of the month',
 		'ort'       => 'Venue:',
@@ -83,7 +81,7 @@ $scbb_ordinal = static function ( $n, $sprache ) {
 		<div class="scbb-abend__kopf">
 			<h2 class="scbb-abend__titel"><?php echo esc_html( $scbb_tx['titel'] ); ?> <span><?php echo esc_html( $scbb_tx['titel2'] ); ?></span></h2>
 			<p class="scbb-abend__naechster">
-				<?php echo esc_html( $scbb_tx['naechster'] ); ?> <strong><?php echo esc_html( $scbb_datum[ $scbb_l ] ); ?></strong><?php if ( $scbb_extra ) : ?> – <?php echo esc_html( $scbb_tx['mit'] ); ?> <strong><a href="<?php echo esc_url( home_url( $scbb_extra['ziel'] ) ); ?>"><?php echo esc_html( $scbb_extra[ $scbb_l ] ); ?></a></strong><?php endif; ?>
+				<?php echo esc_html( $scbb_tx['naechster'] ); ?> <strong><?php echo esc_html( $scbb_datum[ $scbb_l ] ); ?></strong><?php if ( $scbb_extra ) : ?> – <strong><a href="<?php echo esc_url( home_url( $scbb_extra['ziel'] ) ); ?>"><?php echo esc_html( $scbb_extra[ $scbb_l ] ); ?></a></strong><?php endif; ?>
 			</p>
 		</div>
 		<div class="scbb-abend__spalten">
