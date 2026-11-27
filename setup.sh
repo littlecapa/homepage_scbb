@@ -105,7 +105,7 @@ sync_content() {  # sync_content <post-id> <datei>
   local file="$HOME/scbb-content/$2" tmp
   [ -f "$file" ] || { echo "-- $2 nicht vorhanden, übersprungen"; return; }
   tmp=$(mktemp)
-  grep -v -E '^<!-- (Quelle|Grundlage):' "$file" > "$tmp"
+  grep -v -E '^<!-- (Quelle|Grundlage|Titel):' "$file" > "$tmp"
   if [ "$(wp post get "$1" --field=post_content)" != "$(cat "$tmp")" ]; then
     wp post update "$1" "$tmp"
   fi
@@ -142,6 +142,15 @@ SCHNELL_ID=$(ensure_page schnellschachturniere "Schnellschachturniere" "$TURNIER
 sync_content "$VM_ID" turniere-vereinsmeisterschaft.html
 sync_content "$BLITZ_ID" turniere-blitz.html
 sync_content "$SCHNELL_ID" turniere-schnellschach.html
+# Archiv der Vereinsmeisterschaft (Saisons 2015/16–2025/26, von scbb.de übernommen, Slugs wie dort):
+# je Saison content/vereinsmeisterschaft/<slug>.html, Seitentitel aus der Kopfzeile „<!-- Titel: … -->“
+for f in "$HOME/scbb-content/vereinsmeisterschaft/"*.html; do
+  [ -f "$f" ] || continue
+  slug=$(basename "$f" .html)
+  titel=$(sed -n 's/^<!-- Titel: \(.*\) -->$/\1/p' "$f")
+  A_ID=$(ensure_page "$slug" "$titel" "$VM_ID" publish)
+  sync_content "$A_ID" "vereinsmeisterschaft/$slug.html"
+done
 sync_content "$MANNSCHAFTEN_ID" mannschaften.html
 # Unterseiten Mannschaften: /mannschaften/1-mannschaft/ … /5-mannschaft/ (Slugs wie auf scbb.de), /u16/, /u20/
 for n in 1 2 3 4 5; do
