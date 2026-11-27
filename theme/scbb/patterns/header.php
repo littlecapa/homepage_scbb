@@ -14,11 +14,12 @@ $scbb_d    = scbb_daten();
 // Menüpunkte: Beschriftung => Pfad. Seiten, die es noch nicht gibt, führen vorerst ins Leere.
 $scbb_menu = array(
 	'Startseite'   => '/',
-	'Über uns'     => '/ueber/',
+	'News'         => '/news/',
+	'Turniere'     => '/turniere/',
 	'Mannschaften' => '/mannschaften/',
 	'Jugend'       => '/jugend/',
-	'Turniere'     => '/turniere/',
 	'Termine'      => '/termine/',
+	'Über uns'     => '/ueber/',
 	'Kontakt'      => '/kontakt/',
 );
 ?>

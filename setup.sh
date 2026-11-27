@@ -61,9 +61,7 @@ if [ -z "$LOGO_ID" ]; then
 fi
 wp option update site_icon "$LOGO_ID"
 wp option update site_logo "$LOGO_ID"
-# Solange die Seite 'Start' noch Entwurf ist: neueste Beiträge als Startseite (sonst 404).
-# TODO: beim Livegang auf show_on_front=page mit page_on_front=<ID der Startseite> umstellen.
-wp option update show_on_front posts
+# Startseite und News-Seite: siehe Abschnitt 4 (Seiten).
 
 echo "== 3. Plugins"
 # Erlaubte Plugins: alles, was hier nicht steht, wird entfernt.
@@ -125,6 +123,19 @@ JUGEND_ID=$(ensure_page jugend "Schachjugend" 0 publish)
 TRAINING_ID=$(ensure_page training "Jugendschachtraining" "$JUGEND_ID" publish)
 sync_content "$JUGEND_ID" jugend.html
 sync_content "$TRAINING_ID" jugend-training.html
+
+# Startseite (Inhalt kommt aus templates/front-page.html) und News (Übersicht der Beiträge)
+START_ID=$(ensure_page start "Startseite" 0 publish)
+NEWS_ID=$(ensure_page news "News" 0 publish)
+wp option update show_on_front page
+wp option update page_on_front "$START_ID"
+wp option update page_for_posts "$NEWS_ID"
+
+# Detailseiten der Bereiche auf der Startseite
+TURNIERE_ID=$(ensure_page turniere "Turniere" 0 publish)
+MANNSCHAFTEN_ID=$(ensure_page mannschaften "Mannschaften" 0 publish)
+sync_content "$TURNIERE_ID" turniere.html
+sync_content "$MANNSCHAFTEN_ID" mannschaften.html
 
 # Seiten-Templates: nur das Standard-Template des Themes (Reste des Extendify-Themes zurücksetzen).
 for id in $(wp post list --post_type=page --post_status=any --format=ids); do

@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.7.1
+Version: 0.8.1
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -639,3 +639,92 @@ a.scbb-pfeil:hover {
 .scbb-abend > .scbb-abend__inhalt[lang="en"] { display: none; }
 .scbb-abend:has(.scbb-sprache__schalter:checked) > .scbb-abend__inhalt[lang="de"] { display: none; }
 .scbb-abend:has(.scbb-sprache__schalter:checked) > .scbb-abend__inhalt[lang="en"] { display: block; }
+
+/* ---------- Startseite: Bereiche (2x2) ---------- */
+.scbb-bereiche {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+	margin-block: 0 var(--wp--preset--spacing--40);
+}
+
+.scbb-bereich {
+	display: flex;
+	flex-direction: column;
+	padding: 14px 18px;
+	border-top: 4px solid var(--wp--preset--color--scbb-blau);
+	border-radius: 4px;
+	background: #fff;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scbb-bereich__titel {
+	margin: 0 0 6px;
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+
+.scbb-bereich__titel a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.scbb-bereich p {
+	margin: 0 0 8px;
+	line-height: 1.45;
+}
+
+.scbb-bereich__liste {
+	margin: 0 0 8px;
+	padding: 0;
+	list-style: none;
+}
+
+.scbb-bereich__liste li {
+	padding: 3px 0;
+	border-bottom: 1px solid rgba(65, 105, 225, 0.15);
+}
+
+.scbb-bereich__liste time {
+	color: #666;
+	font-size: 0.85rem;
+	white-space: nowrap;
+}
+
+.scbb-bereich__mehr {
+	margin-top: auto !important;
+	margin-bottom: 0 !important;
+	text-align: right;
+}
+
+.scbb-bereich__mehr a {
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.scbb-bereich__mehr a:hover,
+.scbb-bereich__mehr a:focus {
+	text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+	.scbb-bereiche {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ---------- News-Übersicht ---------- */
+.scbb-news__eintrag {
+	padding: 10px 0 14px;
+	border-bottom: 1px solid rgba(65, 105, 225, 0.2);
+}
+
+.scbb-news__datum {
+	color: #666;
+	font-size: 0.85rem;
+}
+
+.scbb-news__titel {
+	margin: 2px 0 6px;
+	font-size: 1.35rem;
+}
