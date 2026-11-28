@@ -4,7 +4,9 @@
 Aufruf: python3 tools/swiss_kreuz.py <Kreuz.html> <ziel.html> "<Seitentitel>"
   z. B. python3 tools/swiss_kreuz.py BlitzNovember2026-Kreuz.html content/blitzturniere/blitzturnier-2026-11.html "Blitzturnier November 2026"
 
-Swiss-Chess kürzt Namen auf 17 Zeichen; bekannte Namen werden über NAMEN vervollständigt.
+Swiss-Chess kürzt Namen auf 17 Zeichen; bekannte Namen werden über NAMEN vervollständigt
+(Schreibweise wie in den Kreuztabellen von scbb.de: „Nachname,Vorname“, Titel vorn, „Dr.“ hinten).
+Als Modul nutzen tools/saisonwertung.py (name_norm) und der Import von scbb.de (seite) dieselben Funktionen.
 """
 import html
 import re
@@ -15,11 +17,23 @@ NAMEN = {
     'Evtuschenko,Danie': 'Evtuschenko,Daniel',
     'Höfer,Severin Pau': 'Höfer,Severin Paul',
     'von der Lippe,Han': 'von der Lippe,Hans-Bernd',
-    'Neese,Hans-Joachi': 'Neese,Hans-Joachim',
-    'Köhler,Kurt Albre': 'Köhler,Kurt Albrecht',
+    'Neese,Hans-Joachi': 'FM Neese,Hans-Joachim',
+    'Neese,Hans-Joachim': 'FM Neese,Hans-Joachim',
+    'Köhler,Kurt Albre': 'Köhler,Kurt Albrecht,Dr.',
+    'Zarevakilabadi,Ka': 'Zarevakilabadi,Kazem',
+    'Ghalandarian,Dan': 'Ghalandarian,Daniel',
+    'Ghalandarian,Dany': 'Ghalandarian,Daniel',  # scbb.de Oktober „Dany“, November „Daniel“
+    'De la Cuba,Gonzal': 'De la Cuba,Gonzalo',
+    'de la Cuba,Gonzalo': 'De la Cuba,Gonzalo',
     'Miller,Artyom': 'Miller,Artjom',
     'Miller,artjom': 'Miller,Artjom',
+    'Kuzmin.Pavel': 'Kuzmin,Pavel',
 }
+
+
+def name_norm(name):
+    name = re.sub(r'\s*,\s*', ',', name.replace('\xa0', ' ')).strip()
+    return NAMEN.get(name, name)
 
 
 def zellen(zeile):
@@ -37,22 +51,24 @@ def lesen(pfad):
     for z in zeilen:
         c = zellen(z)
         if len(c) == len(kopf) and c[0].isdigit():
-            name = re.sub(r',\s+', ',', c[1])
-            c[1] = NAMEN.get(name, name)
+            c[1] = name_norm(c[1])
             spieler.append(c)
     return runden, kopf, spieler
 
 
 def vorname_name(n):
-    nach, _, vor = n.partition(',')
-    return f'{vor} {nach}'.strip()
+    """„FM Neese,Hans-Joachim“ -> „FM Hans-Joachim Neese“, „Köhler,Kurt Albrecht,Dr.“ -> „Dr. Kurt Albrecht Köhler“"""
+    nach, vor, *rest = n.split(',') + ['']
+    titel = re.match(r'((?:W?[GIFC]M\s+)?)(.*)', nach)
+    vorn = ' '.join(x.strip() for x in [titel.group(1)] + [r for r in rest if r] if x.strip())
+    return ' '.join(x for x in (vorn, vor.strip(), titel.group(2).strip()) if x)
 
 
 def punkte(p):
     return p.replace('.0', '').replace('.5', ',5')
 
 
-def seite(quelle, titel, runden, kopf, spieler):
+def seite(quelle, titel, runden, kopf, spieler, grundlage='Swiss-Chess-Kreuztabelle, erzeugt mit tools/swiss_kreuz.py.'):
     def zelle(i, wert):
         if i == 0:
             return f'{wert}.'
@@ -74,7 +90,7 @@ def seite(quelle, titel, runden, kopf, spieler):
     zurueck_text = {'blitzturniere': 'Blitzturnieren', 'schnellschachturniere': 'Schnellschachturnieren'}.get(ordner, 'Turnieren')
     return f'''<!-- Quelle: github.com/littlecapa/homepage_scbb/{quelle} – Änderungen bitte dort, deploy.sh überträgt sie. -->
 <!-- Titel: {titel} -->
-<!-- Grundlage: Swiss-Chess-Kreuztabelle, erzeugt mit tools/swiss_kreuz.py. -->
+<!-- Grundlage: {grundlage} -->
 
 <!-- wp:paragraph {{"className":"is-style-lead"}} -->
 <p class="is-style-lead">{len(spieler)} Teilnehmende, {runden} Runden Schweizer System. {sieger}</p>
