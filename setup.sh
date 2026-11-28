@@ -178,6 +178,9 @@ archiv_seiten() {  # archiv_seiten <ordner> <eltern-id>
 }
 archiv_seiten vereinsmeisterschaft "$VM_ID"
 archiv_seiten vereinsschnellschachmeisterschaft "$VSSM_ID"
+# Monatsturniere: je Monat content/blitzturniere/blitzturnier-JJJJ-MM.html usw. (erzeugt mit tools/swiss_kreuz.py)
+archiv_seiten blitzturniere "$BLITZ_ID"
+archiv_seiten schnellschachturniere "$SCHNELL_ID"
 sync_content "$MANNSCHAFTEN_ID" mannschaften.html
 # Unterseiten Mannschaften: /mannschaften/1-mannschaft/ … /5-mannschaft/ (Slugs wie auf scbb.de), /u16/, /u20/
 for n in 1 2 3 4 5; do

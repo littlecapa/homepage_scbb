@@ -2,7 +2,7 @@
 Theme Name: SC Bonn Beuel
 Description: Child-Theme von Twenty Twenty-Five für den Schachclub Bonn Beuel. Quelle: github.com/littlecapa/homepage_scbb
 Template: twentytwentyfive
-Version: 0.9.9
+Version: 0.9.11
 Requires at least: 6.7
 Text Domain: scbb
 */
@@ -1051,4 +1051,55 @@ b {
 .wp-block-post-content > h3.wp-block-heading {
 	font-weight: 600;
 	margin-top: 2rem;
+}
+
+/* Kreuztabellen: Nr., Name und Wertzahl bleiben beim seitlichen Wischen stehen */
+.scbb-kreuz table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+.scbb-kreuz :is(th, td):nth-child(-n+3) {
+	position: sticky;
+	z-index: 1;
+	background: #fff;
+	box-sizing: border-box;
+}
+.scbb-kreuz tbody tr:nth-child(even) :is(td):nth-child(-n+3) { background: #f5f8fe; }
+.scbb-kreuz thead th:nth-child(-n+3) { background: var(--wp--preset--color--scbb-blau); z-index: 2; }
+.scbb-kreuz :is(th, td):nth-child(1) { left: 0; width: 2.6rem; min-width: 2.6rem; max-width: 2.6rem; }
+.scbb-kreuz :is(th, td):nth-child(2) {
+	left: 2.6rem; width: 12.5rem; min-width: 12.5rem; max-width: 12.5rem;
+	overflow: hidden; text-overflow: ellipsis;
+}
+.scbb-kreuz :is(th, td):nth-child(3) {
+	left: 15.1rem; width: 3.4rem; min-width: 3.4rem; max-width: 3.4rem;
+	box-shadow: inset -1px 0 0 #b9c6e6, 4px 0 6px -4px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 600px) {
+	.scbb-kreuz :is(th, td):nth-child(1) { width: 2.1rem; min-width: 2.1rem; max-width: 2.1rem; padding-inline: 3px; }
+	.scbb-kreuz :is(th, td):nth-child(2) { left: 2.1rem; width: 8.5rem; min-width: 8.5rem; max-width: 8.5rem; }
+	.scbb-kreuz :is(th, td):nth-child(3) { left: 10.6rem; width: 2.9rem; min-width: 2.9rem; max-width: 2.9rem; padding-inline: 3px; }
+}
+/* Kreuztabellen mit Punkte/Buchholz in Spalte 4 und 5: auch diese bleiben stehen */
+.scbb-kreuz--wertung :is(th, td):nth-child(-n+5) {
+	position: sticky;
+	z-index: 1;
+	background: #fff;
+	box-sizing: border-box;
+}
+.scbb-kreuz--wertung tbody tr:nth-child(even) td:nth-child(-n+5) { background: #f5f8fe; }
+.scbb-kreuz--wertung thead th:nth-child(-n+5) { background: var(--wp--preset--color--scbb-blau); z-index: 2; }
+.scbb-kreuz--wertung :is(th, td):nth-child(3) { box-shadow: none; }
+.scbb-kreuz--wertung :is(th, td):nth-child(4) { left: 18.5rem; width: 3.8rem; min-width: 3.8rem; max-width: 3.8rem; }
+.scbb-kreuz--wertung td:nth-child(4) { font-weight: 700; }
+.scbb-kreuz--wertung :is(th, td):nth-child(5) {
+	left: 22.3rem; width: 3.4rem; min-width: 3.4rem; max-width: 3.4rem;
+	box-shadow: inset -1px 0 0 #b9c6e6, 4px 0 6px -4px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 600px) {
+	/* Handy: Wertzahl wischt mit, Nr., Name, Punkte und Buchholz bleiben stehen */
+	.scbb-kreuz--wertung :is(th, td):nth-child(2) { width: 7.5rem; min-width: 7.5rem; max-width: 7.5rem; }
+	.scbb-kreuz--wertung :is(th, td):nth-child(3) { position: static; }
+	.scbb-kreuz--wertung :is(th, td):nth-child(4) { left: 9.6rem; width: 3.4rem; min-width: 3.4rem; max-width: 3.4rem; padding-inline: 3px; }
+	.scbb-kreuz--wertung :is(th, td):nth-child(5) { left: 13rem; width: 3.1rem; min-width: 3.1rem; max-width: 3.1rem; padding-inline: 3px; }
 }
